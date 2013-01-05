@@ -1,4 +1,6 @@
-jqueryformvalidation
-====================
+jQuery Form Validation
+==========================
+This is a very simplified HTML form validation plugin for jQuery.  When the form
+is submitted, the plugin will can for fields you want to require, or validate
+the value is correct, like email addresses, urls and numbers.
 
-Simplified HTML form validation plugin for jQuery.  Define a class on the fields you want to validate and the plugin will do the rest.

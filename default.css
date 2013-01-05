@@ -1,0 +1,53 @@
+/*
+Shorthand Map - I never remember ;)
+    top right bottom left
+    top rightleft bottom
+    topbottom rightleft
+    all
+*/
+html,
+body {
+    margin: 0 auto;
+    padding: 10px 0 0;
+    width: 800px;
+    font-family: "Lucida Console", helvetica, verdana, arial, sans-serif;
+    color: #333;
+}
+body  {
+    font-size: 0.8em;
+    line-height: 1.2;
+}
+h1 {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+fieldset {
+    border: 3px solid #003DF5;
+    margin: 0 0 20px 0;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -web-kit-border-radius: 8px;
+}
+legend {
+    padding: 8px;
+    font-size: 1.0em;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -web-kit-border-radius: 8px;
+    background-color: #003DF5;
+}
+legend a {
+  color: #fff;
+}
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="number"] {
+    padding: 4px;
+    font-family: arial, sans-serif;
+    font-weight: normal;
+}

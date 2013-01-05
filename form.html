@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery Form Validation Tests :: GeniusWebTools.com</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link type="text/css" rel="stylesheet" href="./default.css" />
+    <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="./scripts/jquery.gwt-form-validate.js"></script>
+    <script type="text/javascript">
+      // <![CDATA[
+
+      jQuery(function($)
+      {
+        $('#form1').gwtFormValidate();
+
+        $('#form2').gwtFormValidate({
+          preventDefault : true,
+          require : 'valid',
+          callBack : function() { $(document).trigger('do.w00t'); }
+        });
+
+        $(document).bind('do.w00t', function(e){
+          alert(' says, "w00t!"');
+        });
+
+        $('#form3').gwtFormValidate({
+          preventDefault : true,
+          callBack : w00t
+        });
+
+        function w00t()
+        {
+          $.post('./ajax.html', $('#form3').serialize(), function(data)
+          {
+            $('#ajaxResponse').html(data);
+          });
+        }
+
+        $('.footnote1').prepend('<a href="#footnote1"><sup>&dagger;</sup></a>');
+      });
+      // ]]>
+    </script>
+  </head>
+  <body>
+    <div id="content">
+      <h1>Example 1</h1>
+      <p>Default setup.</p>
+      <form id="form1" method="post" action="">
+        <fieldset><legend>Text Fields</legend>
+          Text Field 1 <input type="text" name="text1" id="Text_Field_1" placeholder="text field one" /> <em>Optional</em><br />
+          Text Field 2 <input type="text" name="text2" class="required" id="Text_Field_2" title="Text Field 2" placeholder="text field two" /> <em>Required, the TITLE attribute will be returned on error.</em><br />
+          Text Field 3 <input type="text" name="text3" class="required" id="Text_Field_3" placeholder="text field three" /> <em>Required, the ID attribute will be returned on error.</em><br />
+          Text Field 4 <input type="text" name="text4" class="required" placeholder="text field four" /> <em>Required, the PLACEHOLDER attribute will be returned on error.</em><br />
+          Text Field 5 <input type="text" class="required" placeholder="text field five" /> <em>Required, UNKNOWN will be returned on error.</em><br />
+        </fieldset>
+
+        <fieldset><legend>Password Fields</legend>
+          Password Field 1 <input type="password" name="password1" class="required" id="Password_Field_1" title="Password Field 1" placeholder="password field one" /> <em>Required.</em><br />
+          Password Field 2 <input type="password" name="password2" class="validate match-Password_Field_1" id="Password_Field_2" title="Password Field 2" placeholder="password field two" /> <em>Optional, but must match Password Field 1.</em><br />
+        </fieldset>
+
+        <fieldset><legend class="footnote1">Email Fields</legend>
+          Email Field 1 <input type="email" name="email1" class="required" id="Email_Field_1" title="Email Field 1" placeholder="email field one" /> <em>Required and must be an email address.</em><br />
+          Email Field 2 <input type="email" name="email2" class="validate" id="Email_Field_2" title="Email Field 2" placeholder="email field two" /> <em>Optional, but if it has a value it must be an email address.</em><br />
+          Email Field 3 <input type="email" name="email3" placeholder="email field three" /> <em>Optional, value will not be validated by plugin.</em><br />
+        </fieldset>
+
+
+        <fieldset><legend>URL Fields</legend>
+          URL Field 1 <input type="url" name="url1" class="validate" id="URL_Field_1" title="URL Field 1" placeholder="url field one" /> <em>Optional, but must be a URL.</em><br />
+          URL Field 2 <input type="url" name="url2" class="required" id="URL_Field_2" title="URL Field 2" placeholder="url field two" /> <em>Required, and must be a URL.</em><br />
+        </fieldset>
+
+        <fieldset><legend class="footnote1">Numeric Fields</legend>
+          Number Field 1 <input type="number" name="number1" class="required" title="Number Field 1" min="1" max="50" placeholder="number field one" /> <em>Required number between 1 and 50.</em><br />
+          Number Field 2 <input type="number" name="number2" class="required" title="Number Field 2" min="100" max="600" step="100" placeholder="number field two"  /> <em>Required number between 100 and 600, but only multiples of 100.</em><br />
+          Number Field 3 <input type="number" name="number3" class="required" title="Number Field 3" placeholder="number field three"  /> <em>Required number.</em><br />
+          Number Field 4 <input type="number" name="number4" class="required" title="Number Field 4" min="10" placeholder="number field four"  /> <em>Required number, minimum of 10, no maximum.</em><br />
+          Number Field 5 <input type="number" name="number5" class="required" title="Number Field 5" max="10" placeholder="number field five"  /> <em>Required number, maximum of 10, no minimum.</em><br />
+          Number Field 6 <input type="number" name="number6" class="validate" title="Number Field 6" max="200" step="10" placeholder="number field six"  /> <em>Optional number maximum of 200, and multiples of 10.</em><br />
+          <br />
+          Range Field 1 <input type="range" name="range1" class="validate" title="Range Field 1" max="200" step="10" /> <em>Optional (Slider: number maximum of 200, and multiples of 10).</em><br />
+        </fieldset>
+
+        <fieldset><legend>Selects, Radios and Checks</legend>
+        Select 1 <select name="select1" title="Select 1" class="required">
+          <option value="">Select an option...</option>
+          <option value="1">One</option>
+          <option value="two">Two</option>
+          <option value="III">Three</option>
+        </select> <em>Required, w/ an empty option to enforce an error.</em><br />
+        <br />
+        Select 2 <select name="select2" title="Select 2" class="required">
+          <option value="1">First</option>
+          <option value="two">Second</option>
+          <option value="III">Third</option>
+        </select> <em>Required, w/o an empty option. (First option will always be selected by default, and will never throw an error).</em><br />
+        <br />
+        <label>Radio 1-1 <input type="radio" name="radio1" value="1" title="Radio 1-One" class="required" /></label><br />
+        <label>Radio 1-2 <input type="radio" name="radio1" value="2" title="Radio 1-Two" /></label><br />
+        <label>Radio 1-3 <input type="radio" name="radio1" value="3" title="Radio 1-Three" /></label><br />
+        <br />
+        <label>Radio 2-1 <input type="radio" name="radio2" value="1" title="Radio 2-One" class="required" /></label><br />
+        <label>Radio 2-2 <input type="radio" name="radio2" value="2" title="Radio 2-Two" /></label><br />
+        <label>Radio 2-3 <input type="radio" name="radio2" value="3" title="Radio 2-Three" /></label><br />
+        <br />
+        <label>Checkbox 1 <input type="checkbox" name="check1[]" value="1" title="Check One" class="required" /></label><br />
+        <label>Checkbox 2 <input type="checkbox" name="check1[]" value="2" title="Check Two" /></label><br />
+        <label>Checkbox 3 <input type="checkbox" name="check1[]" value="3" title="Check Three" /></label><br />
+        <br />
+        </fieldset>
+
+        <fieldset><legend>Textarea</legend>
+          <textarea class="required" name="new_mexico" title="Textarea 51" style="width: 100%; height: 200px; overflow: auto;"></textarea>
+        </fieldset>
+
+        <fieldset><legend>Buttons</legend>
+          <input type="submit" value="Validate &raquo;" /><br />
+        </fieldset>
+      </form>
+      <h1>Example 2</h1>
+      <p>Default form action stopped, custom require class &amp; callback lambda function.</p>
+      <form id="form2" method="get" action="">
+        <fieldset><legend>Text Fields</legend>
+          Text Field 1 <input type="text" name="text1" class="valid" id="Form_2_Text_Field_1" placeholder="Required text" /> <em>Required, uses user defined class.</em><br />
+
+        </fieldset>
+
+        <fieldset><legend>Buttons</legend>
+          <input type="submit" value="Validate &raquo;" />
+        </fieldset>
+      </form>
+
+      <h1>Example 3</h1>
+      <p>Default form action stopped &amp; callback global function.</p>
+      <form id="form3" method="get" action="">
+        <fieldset><legend>Text Fields</legend>
+          Text Field 1 <input type="text" name="text1" class="required" id="Form_3_Text_Field_1" placeholder="Required text" /> <em>Required.</em><br />
+
+        </fieldset>
+
+        <fieldset><legend>Buttons</legend>
+          <input type="submit" value="Validate &raquo;" />
+        </fieldset>
+      </form>
+      <a name="footnote1"></a>
+      <p><sup>&dagger;</sup> Some browsers do not support these fields so they may simple appear as text fields, however, validation will still work.</p>
+    </div>
+    <div id="ajaxResponse"></div>
+  </body>
+</html>
