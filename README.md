@@ -10,18 +10,18 @@ if any exist, otherwise an alert() will be used.
 ### Example Form
 <pre><code>&lt;form method="post" action="" id="myForm">
   Text Field &lt;input type="text" name="field_1" class="required" title="Text Field" placeholder="you have to fill me in!" />
-  Email Field <input type="email" name="field_2" class="required" title="Email_Address" id="Email_Address" placeholder="your email is required" />
-  Type Email <input type="email" name="field_3" class="match match-Email_Address" title="Verify_Email_Address" placeholder="your email is required" />
+  Email Field &lt;input type="email" name="field_2" class="required" title="Email_Address" id="Email_Address" placeholder="your email is required" />
+  Type Email &lt;input type="email" name="field_3" class="match match-Email_Address" title="Verify_Email_Address" placeholder="your email is required" />
   Your favorite color:
-  <label>Red <input type="radio" name="radio_1" class="required" id="Choose_Your_Color" value="#ff0000" /></label>
-  <label>Green <input type="radio" name="radio_1" value="#00ff00" /></label>
-  <label>Blue <input type="radio" name="radio_1"  value="#0000ff" /></label>
+  <label>Red &lt;input type="radio" name="radio_1" class="required" id="Choose_Your_Color" value="#ff0000" /></label>
+  <label>Green &lt;input type="radio" name="radio_1" value="#00ff00" /></label>
+  <label>Blue &lt;input type="radio" name="radio_1"  value="#0000ff" /></label>
   <form>
-  <script type="text/javascript">
-  // <![CDATA
+  &lt;script type="text/javascript">
+  // &lt;![CDATA
   jQuery(function($) {
    $('#myForm').gwtFormValidate();
   });
   // ]]>
-  </script>
+  &lt;/script>
 </code></pre>
