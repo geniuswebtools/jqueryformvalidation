@@ -8,8 +8,8 @@ If you're using the jQuery UI, a dialog modal will be used to display the errors
 if any exist, otherwise an alert() will be used.
 
 ### Example Form
-<pre><code><form method="post" action="" id="myForm">
-  Text Field <input type="text" name="field_1" class="required" title="Text Field" placeholder="you have to fill me in!" />
+<pre><code>&lt;form method="post" action="" id="myForm">
+  Text Field &lt;input type="text" name="field_1" class="required" title="Text Field" placeholder="you have to fill me in!" />
   Email Field <input type="email" name="field_2" class="required" title="Email_Address" id="Email_Address" placeholder="your email is required" />
   Type Email <input type="email" name="field_3" class="match match-Email_Address" title="Verify_Email_Address" placeholder="your email is required" />
   Your favorite color:
