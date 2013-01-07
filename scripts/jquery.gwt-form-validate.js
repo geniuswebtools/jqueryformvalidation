@@ -74,7 +74,7 @@
 
     var that = this; // jQuery object
     var args = $.extend({
-      log : true,
+      log : false,
       check : 'validate',
       require : 'required',
       match : 'match',
