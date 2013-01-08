@@ -1,6 +1,7 @@
 2.1.1
 - Added class for fields w/ errors
 - Updated inline documentation on JavaScript file
+- Fixed bad syntax, and added missing escapes from RegExp
 
 2.1.0
 - Updated script to user jQuery and added support for jQuery UI

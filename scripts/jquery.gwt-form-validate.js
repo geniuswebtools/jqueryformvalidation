@@ -167,7 +167,7 @@
             case 'checkbox':
             case 'radio':
               var isChecked = $('input[type="' + type + '"][name="' + name + '"]:checked').length;
-              if(isChecked == 0) {
+              if(isChecked === 0) {
                 isValid = false;
               }
               break;
@@ -193,7 +193,7 @@
           }
 
           if(isMatch === true) {
-            var findMatch = new RegExp(args.match + '-[a-z0-9_]{1,}[^\s]?','gi');
+            var findMatch = new RegExp(args.match + '-[a-z0-9_]{1,}[^\\s]?','gi');
             var matches = classes.match(findMatch);
             var label2 = matches[0].toString().replace(args.match + '-', '');
             var val2  = $('#' + label2).val();
@@ -268,12 +268,12 @@
         }
       });
 
-      if(Errors != '')
+      if(Errors !== '')
       {
         AUDIT.log('Errors were found:\n' + Errors);
         var isUI = false;
         try {
-          isUI = $.ui.version
+          isUI = $.ui.version;
         }
         catch(e) {
           isUI = false;
@@ -283,11 +283,11 @@
               ErrorMsg += '<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>';
               ErrorMsg += '<strong>Alert!</strong> Please correct the following errors to continue.</p></div>';
               ErrorMsg += '<p>' + Errors.toString().replace(/\n/g, '<br />') + '</p>';
-          var dialogId = 'gwtFormValidateDialogError' + parentSelector.toString().replace(/[^a-z-0-9_]/gi,'');
+          var dialogId = 'gwtFormValidateDialogError' + parentSelector.toString().replace(/[^a-z\-0-9_]/gi,'');
           var hasDialogID = ($('#' + dialogId).length == 1) ? true : false;
           if(hasDialogID === false) {
             AUDIT.log('Dialog Modal ID Created: ' + dialogId);
-            $('body').append('<div id="' + dialogId + '" title="Form Errors">' + ErrorMsg + '</div>')
+            $('body').append('<div id="' + dialogId + '" title="Form Errors">' + ErrorMsg + '</div>');
           }
           else {
             $('#' + dialogId).html(ErrorMsg);
