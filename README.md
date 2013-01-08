@@ -48,15 +48,16 @@ first alternative that it finds: id, placeholder, name or defaults to Unknown.
 
 Some fields may not be required, but you still want to ensure data integrity if
 the field has a value.  Simply add the <code>validate</code> class to those fields,
-and they'll be matched agains their field types.
+and they'll be matched against their field types.
 
 If you want to match the value of two fields to make sure they match, give one
 field an id.  Assign the second field with the two classes <code>match match-ID</code>
 The <code>ID</code> in <code>match-ID</code> should be the ID you assigned to the
 first field. See the *form.html* for a clear example.
 
-If a field fails validation, the class error is applied to the field.  If the field
-passes validation on the following submission attempt, the field is removed.
+If a field fails validation, the class <code>error</code> is applied to the field.
+If the field passes validation on the following submission attempt, the field
+is removed.
 
 ### Validating Field Types
 If a field is required a simple check to see if it has a value is performed. If
