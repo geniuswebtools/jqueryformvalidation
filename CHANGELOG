@@ -1,0 +1,10 @@
+2.1.1
+- Added class for fields w/ errors
+- Updated inline documentation on JavaScript file
+
+2.1.0
+- Updated script to user jQuery and added support for jQuery UI
+- Validates based on classes and field types
+- Supports callback function
+- Added validation for URL fields
+- Added validation for step attribute in number and range fields

@@ -1,29 +1,42 @@
 /**
  * GeniusWebTools.com jQuery Form Valdiation
  *
- * @version 2.1
+ * @version 2.1.1
  * @author Marion Dorsett <marion@geniuswebtools.com>
+ * @url https://github.com/geniuswebtools/jqueryformvalidation
  *
- * TODO Write a description
+ * This is a very simplified HTML form validation plugin for jQuery.  When the
+ * form is submitted, the plugin will can for fields you want to require, or
+ * validate the value is correct, like email addresses, urls and numbers.
+ *
+ * If you're using the jQuery UI, a dialog modal will be used to display the
+ * errors, if any exist, otherwise an alert() will be used.
  *
  * Expects the following CSS classes:
- * .required = Validates
- * .match-{ID} = Matches this field to a similar field of #ID
+ * .required = Requires a value and validates based on the field type
+ * .validate = If a value is present, validation based done on the field type
+ * .match = Matchs this field to the ID suffix of the .match-{ID} class
+ * .match-{ID} = Maps this field to it's counter part with the {ID} to be matched
  *
- * Validation is done based on field types:
- * text = Must have not be empty
+ * Validation is done based on classes and field types:
+ * text = Must have a value, and can not be empty
  * email = Must be an email
  * url = Must be a URL (http(s))
  * radio = Required checked, on one radio button with in a named group.  Only
  *         one radio button should set the required class
- * select = Selected option must not be empty (Atleast one option must be empty.)
- * number = Must be a number (min and max attributes will set range)
+ * select = Selected option must can not be empty (At least one option must be
+ *          empty for selct fields to validate)
+ * number = Must be a number.  The min and max attributes will set a range, and
+ *          the step attribute will force an interger with in the step interval
  *
- * The fields title attribute will be use by default to inform the user which
+ * range = See number, this is only necessary if the browser doesn't render the
+ *         desired range UI
+ *
+ * The field's title attribute will be used by default to inform the user which
  * field has the error. If the ID attribute is used instead underscores will be
- * replaced with spaces.
+ * replaced with spaces.  An optional class .error can be applied via CSS for
+ * additional visual notification to the user.
  *
- * If the defined field attribute is not
  */
 (function($){
   $.fn.gwtFormValidate = function(options){
@@ -78,6 +91,7 @@
       check : 'validate',
       require : 'required',
       match : 'match',
+      error : 'error',
       fieldLabel : 'title',
       preventDefault : false,
       callBack : false,
@@ -116,6 +130,7 @@
 
       AUDIT.log('\tFinding Fields for selectors:\n\t\t' + requireSelector + '\n\t\t' + checkSelector);
       $(requireSelector + ',' + checkSelector).each(function(i) {
+        $(this).removeClass(args.error);
         var label = AUDIT.label($(this));
         var name = $(this).attr('name') || false;
         var type = $(this).attr('type') || false;
@@ -163,6 +178,7 @@
 
           if(isValid === false) {
             Errors += label+' is required.\n';
+            $(this).addClass(args.error);
           }
         }
 
@@ -172,6 +188,7 @@
           if(isEmail === true) {
             if(AUDIT.email(val) === false) {
               Errors += label+' must be an email address.\n';
+              $(this).addClass(args.error);
             }
           }
 
@@ -182,12 +199,14 @@
             var val2  = $('#' + label2).val();
             if(AUDIT.match(val, val2) === false) {
               Errors += label+' doesn\'t match '+label2.replace(/_/gi,' ')+'.\n';
+              $(this).addClass(args.error);
             }
           }
 
           if(isURL === true) {
             if(AUDIT.url(val) === false) {
               Errors += label+' must be a URL.\n';
+              $(this).addClass(args.error);
             }
           }
           if( (isNum === true) || (isRange === true)) {
@@ -195,6 +214,7 @@
 
             if(isNaN(num)) {
               Errors += label+' must be a number.\n';
+              $(this).addClass(args.error);
             }
             else {
               var hasMin = $(this).attr('min') || false;
@@ -241,6 +261,7 @@
 
               if( (minError) || (maxError) || (stepError) ) {
                 Errors += label+' must be'+useTemplate.replace(/__MAX__/, hasMax).replace(/__MIN__/, hasMin).replace(/__STEP__/, hasStep)+'.\n';
+                $(this).addClass(args.error);
               }
             }
           }

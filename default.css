@@ -51,3 +51,22 @@ input[type="number"] {
     font-family: arial, sans-serif;
     font-weight: normal;
 }
+
+.error {
+  border: 1px solid #ff0000;
+}
+
+#form2 fieldset {
+    border-color: #F5003D;
+}
+#form2 legend{
+    background-color: #F5003D;
+}
+
+#form3 fieldset {
+    border-color: #F5B800;
+}
+#form3 legend{
+    background-color: #F5B800;
+}
+

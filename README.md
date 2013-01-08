@@ -12,6 +12,7 @@ if any exist, otherwise an alert() will be used.
 * Match the values of two fields
 * Check the accuracy of field values like: email, url, numbers and ranges.
 * Invoke a custom callback
+* Error classed applied to fields that failed validation
 
 ### Example Form
 <pre><code>&lt;form method="post" action="" id="myForm">
@@ -39,6 +40,7 @@ There are four classes used to help with form validation.
 * .validate
 * .match
 * .match-ID
+* .error
 
 Fields should have a title attribute that provides a description so the user knows
 what fields failed validation.  If a title is not defined, the plugin will use the
@@ -52,6 +54,9 @@ If you want to match the value of two fields to make sure they match, give one
 field an id.  Assign the second field with the two classes <code>match match-ID</code>
 The <code>ID</code> in <code>match-ID</code> should be the ID you assigned to the
 first field. See the *form.html* for a clear example.
+
+If a field fails validation, the class error is applied to the field.  If the field
+passes validation on the following submission attempt, the field is removed.
 
 ### Validating Field Types
 If a field is required a simple check to see if it has a value is performed. If
