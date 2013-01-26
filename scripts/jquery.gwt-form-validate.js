@@ -155,7 +155,7 @@
         var isNum = (type == 'number') ? true : false;
         var isRange = (type == 'range') ? true : false;
         var hasMin = ($(this).prop('min')) ? true: false;
-        var hasMax = ($(this).prop('max')) ? true: false;
+        var hasMaxLen = ($(this).prop('maxlength')) ? true: false;
 
         if(type === false) {
           type = $(this).context.nodeName.toString().toLowerCase();
@@ -229,9 +229,8 @@
               $(this).addClass(args.error);
             }
             else {
-//              var hasMin = $(this).attr('min') || false;
-//              var hasMax = $(this).attr('max') || false;
-              var hasStep = $(this).attr('step') || false;
+              var hasMax = $(this).prop('max') || false;
+              var hasStep = $(this).prop('step') || false;
               var betError = false;
               var minError = false;
               var maxError = false;
@@ -282,8 +281,8 @@
             if( (hasMin === true) && (AUDIT.minLen(val, $(this).attr('min')) === false)) {
               Errors += label+' must be at least ' + $(this).attr('min') + ' characters minimum.\n';
             }
-            if( (hasMax === true) && (AUDIT.maxLen(val, $(this).attr('min')) === false) ) {
-              Errors += label+' can only be ' + $(this).attr('min') + ' characters maximum.\n';
+            if( (hasMax === true) && (AUDIT.maxLen(val, $(this).attr('maxlength')) === false) ) {
+              Errors += label+' can only be ' + $(this).attr('maxlength') + ' characters maximum.\n';
             }
           }
         }

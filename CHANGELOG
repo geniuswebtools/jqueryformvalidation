@@ -1,5 +1,6 @@
 2.1.2
 - Added support to check min and max length on string input fields
+- Changed jQuery methods from .attr() to .prop() for proper boolean values
 
 2.1.1
 - Added class for fields w/ errors
