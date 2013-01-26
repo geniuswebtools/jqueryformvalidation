@@ -1,7 +1,7 @@
 /**
  * GeniusWebTools.com jQuery Form Valdiation
  *
- * @version 2.1.1
+ * @version 2.1.2
  * @author Marion Dorsett <marion@geniuswebtools.com>
  * @url https://github.com/geniuswebtools/jqueryformvalidation
  *
