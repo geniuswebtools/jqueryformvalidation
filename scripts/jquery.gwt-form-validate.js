@@ -82,6 +82,16 @@
       },
       url : function(val) {
         return (val.search(this.urlRegExp) != -1) ? true : false;
+      },
+      minLen : function(val, len) {
+        var length = parseInt(len, 10);
+        if(isNaN(length)) { length = 0; } // min attribute must be a number
+        return (val.length >= len) ? true : false;
+      },
+      maxLen : function(val, len) {
+        var length = parseInt(len, 10);
+        if(isNaN(length)) { length = 0; } // max attribute must be a number
+        return (val.length <= len) ? true : false;
       }
     };
 
@@ -144,6 +154,8 @@
         var isMatch = ((classes.search(matchPattern) != -1)) ? true : false;
         var isNum = (type == 'number') ? true : false;
         var isRange = (type == 'range') ? true : false;
+        var hasMin = ($(this).prop('min')) ? true: false;
+        var hasMax = ($(this).prop('max')) ? true: false;
 
         if(type === false) {
           type = $(this).context.nodeName.toString().toLowerCase();
@@ -217,8 +229,8 @@
               $(this).addClass(args.error);
             }
             else {
-              var hasMin = $(this).attr('min') || false;
-              var hasMax = $(this).attr('max') || false;
+//              var hasMin = $(this).attr('min') || false;
+//              var hasMax = $(this).attr('max') || false;
               var hasStep = $(this).attr('step') || false;
               var betError = false;
               var minError = false;
@@ -263,6 +275,15 @@
                 Errors += label+' must be'+useTemplate.replace(/__MAX__/, hasMax).replace(/__MIN__/, hasMin).replace(/__STEP__/, hasStep)+'.\n';
                 $(this).addClass(args.error);
               }
+            }
+          }
+          else {
+            // This isn't a number field, so we want to check for the string length
+            if( (hasMin === true) && (AUDIT.minLen(val, $(this).attr('min')) === false)) {
+              Errors += label+' must be at least ' + $(this).attr('min') + ' characters minimum.\n';
+            }
+            if( (hasMax === true) && (AUDIT.maxLen(val, $(this).attr('min')) === false) ) {
+              Errors += label+' can only be ' + $(this).attr('min') + ' characters maximum.\n';
             }
           }
         }

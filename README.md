@@ -83,6 +83,11 @@ Check boxes can be validated the same way as radio buttons, provided that you na
 them as an array <code>name="sample[]"</code>.  More than one box can be checked,
 but at least one must be checked for the form to submit.
 
+### Minimum and Maximum
+Adding the min and max attributes to string input fields will check their lengths
+to make sure they're at least as long as the min value, or as not longer then the
+max value.
+
 ### Submission and Callbacks
 If any errors are found, a message will be returned, and the form submission will
 be stopped.  After the validation passes, the form will continue the submission.

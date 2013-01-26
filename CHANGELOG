@@ -1,3 +1,6 @@
+2.1.2
+- Added support to check min and max length on string input fields
+
 2.1.1
 - Added class for fields w/ errors
 - Updated inline documentation on JavaScript file
