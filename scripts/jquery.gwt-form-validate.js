@@ -131,7 +131,7 @@
             }
             AUDIT.log('Validating Form ' + that.selector);
             try {
-                $(that.selector + ' .btn-primary').button('loading');
+                $(that.selector + ' .btn-primary').not('.dropdown-toggle').button('loading');
             } catch (e) { /* no button method */
             }
 
